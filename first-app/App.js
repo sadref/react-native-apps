@@ -11,7 +11,7 @@ export default class App extends React.Component {
     setTimeout(()=>{
       DeviceEventEmitter.emit('event.test', {});
     },2000);
-  
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
   return (
     <SafeAreaView style={styles.areaview}>
     <View style={styles.container}>
@@ -25,7 +25,6 @@ export default class App extends React.Component {
     </View>
     </SafeAreaView>
   );
-  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
   }
 }
 
