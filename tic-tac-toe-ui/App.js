@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Dimensions, useWindowDimensions } from 'react-native';
 
 
 export default function App() {
+  const { styles } = useStyle();
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.row}>
@@ -48,58 +49,104 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    //backgroundColor: 'grey',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 0.0438 * Dimensions.get('window').height,
-    padding: 0.0438 * Dimensions.get('window').height,
-  },
-  row: {
-    flexDirection: 'row',
-    //padding: 1,
-  },
-  boxOne: {
-    flex: 1,
-    borderRightWidth: 3,
-    borderBottomWidth: 3,
-    textAlign: 'center',
-    borderColor: 'paleturquoise',
+const useStyle = () => {
+  const dimensions = useWindowDimensions();
+  const borderWith = 0.003 * dimensions.width;
+  const padding = 0.002 * dimensions.width;
+  const boxWidth = 0.142 * dimensions.width;
+  const boxHeight = 0.142 * dimensions.height;
+  const borderColor = 'paleturquoise';
+  console.log('Logging dimensions', dimensions)
 
-  },
-  boxTwo: {
-    flex: 1,
-    borderRightWidth: 3,
-    borderBottomWidth: 3,
-    borderColor: 'paleturquoise',
-  },
-  boxThree: {
-    flex: 1,
-    borderBottomWidth: 3,
-    borderColor: 'paleturquoise',
-  },
-  lastBoxOne: {
-    flex: 1,
-    borderRightWidth: 3,
-    borderColor: 'paleturquoise',
+  const styles = StyleSheet.create({
+  
+    root: {
+      flex: 1,
+      //backgroundColor: 'cyan',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: 0.0438 * dimensions.height,
+      padding: 0.0438 * dimensions.height,
+    },
+    row: {
+      flexDirection: 'row',
+    },
+    boxOne: {
+      flex: 1,
+      height: boxHeight,
+      width: boxWidth,
+      borderRightWidth: borderWith,
+      borderBottomWidth: borderWith,
+      borderColor: borderColor,
+      padding: padding,
+      justifyContent: 'center',
+      alignItems: 'center',
+  
+    },
+    boxTwo: {
+      flex: 1,
+      height: boxHeight,
+      width: boxWidth,
+      borderRightWidth: borderWith,
+      borderBottomWidth: borderWith,
+      borderColor: borderColor,
+      padding: padding,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    boxThree: {
+      flex: 1,
+      height: boxHeight,
+      width: boxWidth,      
+      borderBottomWidth: borderWith,
+      borderColor: borderColor,
+      padding: padding,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    lastBoxOne: {
+      flex: 1,
+      height: boxHeight,
+      width: boxWidth,
+      borderRightWidth: borderWith,
+      borderColor: borderColor,
+      padding: padding,
+      justifyContent: 'center',
+      alignItems: 'center',
+  
+    },
+    lastBoxTwo: {
+      flex: 1,
+      height: boxHeight,
+      width: boxWidth,
+      borderRightWidth: borderWith,
+      borderColor: borderColor,
+      padding: padding,
+      justifyContent: 'center',
+      alignItems: 'center',
+  
+    },
+    lastBoxThree: {
+      flex: 1,
+      height: boxHeight,
+      width: boxWidth,      
+      borderBottomWidth: borderWith,
+      borderColor: 'white',
+      padding: padding,
+      justifyContent: 'center',
+      alignItems: 'center',
+      
+    },
+    text: {
+      fontSize: 0.08 * dimensions.height,
+      //fontFamily: 'lucida grande',
+      fontWeight: 'semibold',
+      color: 'slategray',
+      padding: padding,
+    },
+  })
 
-  },
-  lastBoxTwo: {
-    flex: 1,
-    borderRightWidth: 3,
-    borderColor: 'paleturquoise',
+  return { styles }
+}
 
-  },
-  lastBoxThree: {
-    flex: 1,
-  },
-  text: {
-    textAlign: 'center',
-    fontSize: 0.08 * Dimensions.get('window').height,
-    //fontFamily: 'lucida grande',
-    fontWeight: 'semibold',
-    color: 'slategray'
-  }
-});
+export { App }
