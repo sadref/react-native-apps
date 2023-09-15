@@ -1,152 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Dimensions, useWindowDimensions } from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, FlatList, SafeAreaView } from 'react-native';
 
-
-export default function App() {
-  const { styles } = useStyle();
-  return (
-    <SafeAreaView style={styles.root}>
-      <View style={styles.row}>
-        <View style={styles.boxOne}>
-        <Text style={styles.text}>O</Text>
+export default class App extends Component {
+  render() {
+    return (
+      <SafeAreaView style={styles.view}>
+        <View style={styles.sep}>
         </View>
-        <View style={styles.boxTwo}>
-        <Text style={styles.text}>O</Text>
-        </View>
-        <View style={styles.boxThree}>
-        <Text style={styles.text}>X</Text>
-        </View>
-      </View>
-
-      <View style={styles.row}>
-        <View style={styles.boxOne}>
-        <Text style={styles.text}>X</Text>
-        </View>
-        <View style={styles.boxTwo}>
-        <Text style={styles.text}>O</Text>
-        </View>
-        <View style={styles.boxThree}>
-        <Text style={styles.text}>O</Text>
-        </View>
-      </View>
-
-      <View style={styles.row}>
-        <View style={styles.lastBoxOne}>
-        <Text style={styles.text}>X</Text>
-        </View>
-        <View style={styles.lastBoxTwo}>
-        <Text style={styles.text}>X</Text>
-        </View>
-        <View style={styles.lastBoxThree}>
-        <Text style={styles.text}>O</Text>
-        </View>
-      </View>
-    <StatusBar style="auto" />
-    </SafeAreaView>
-    
-
-  );
+        <View style={styles.sepa}>
+          <FlatList
+            data={['O', 'X', 'X', 'X', 'O', 'O', 'X', 'X', 'O']}
+            numColumns={3}
+            renderItem={({ item, index }) => (
+              <View style={[index%3 === 0  ? {borderLeftWidth:0} : {borderLeftWidth:3},
+                            index !== 2 && (index === 6 || index === 7 || index === 8)  ? {borderBottomWidth: 0} : {borderBottomWidth: 3},
+                            styles.item]}>
+              <Text style={styles.text}>{item}</Text>
+              </View>
+            )}
+          />
+        </View> 
+        <View style={styles.sep}>
+        </View>        
+      </SafeAreaView>
+    );
+  }
 }
 
-const useStyle = () => {
-  const dimensions = useWindowDimensions();
-  const borderWith = 0.003 * dimensions.width;
-  const padding = 0.002 * dimensions.width;
-  const boxWidth = 0.142 * dimensions.width;
-  const boxHeight = 0.142 * dimensions.height;
-  const borderColor = 'paleturquoise';
-  console.log('Logging dimensions', dimensions)
-
-  const styles = StyleSheet.create({
-  
-    root: {
-      flex: 1,
-      //backgroundColor: 'cyan',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: 0.0438 * dimensions.height,
-      padding: 0.0438 * dimensions.height,
-    },
-    row: {
-      flexDirection: 'row',
-    },
-    boxOne: {
-      flex: 1,
-      height: boxHeight,
-      width: boxWidth,
-      borderRightWidth: borderWith,
-      borderBottomWidth: borderWith,
-      borderColor: borderColor,
-      padding: padding,
-      justifyContent: 'center',
-      alignItems: 'center',
-  
-    },
-    boxTwo: {
-      flex: 1,
-      height: boxHeight,
-      width: boxWidth,
-      borderRightWidth: borderWith,
-      borderBottomWidth: borderWith,
-      borderColor: borderColor,
-      padding: padding,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    boxThree: {
-      flex: 1,
-      height: boxHeight,
-      width: boxWidth,      
-      borderBottomWidth: borderWith,
-      borderColor: borderColor,
-      padding: padding,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    lastBoxOne: {
-      flex: 1,
-      height: boxHeight,
-      width: boxWidth,
-      borderRightWidth: borderWith,
-      borderColor: borderColor,
-      padding: padding,
-      justifyContent: 'center',
-      alignItems: 'center',
-  
-    },
-    lastBoxTwo: {
-      flex: 1,
-      height: boxHeight,
-      width: boxWidth,
-      borderRightWidth: borderWith,
-      borderColor: borderColor,
-      padding: padding,
-      justifyContent: 'center',
-      alignItems: 'center',
-  
-    },
-    lastBoxThree: {
-      flex: 1,
-      height: boxHeight,
-      width: boxWidth,      
-      borderBottomWidth: borderWith,
-      borderColor: 'white',
-      padding: padding,
-      justifyContent: 'center',
-      alignItems: 'center',
-      
-    },
-    text: {
-      fontSize: 0.08 * dimensions.height,
-      //fontFamily: 'lucida grande',
-      fontWeight: 'semibold',
-      color: 'slategray',
-      padding: padding,
-    },
-  })
-
-  return { styles }
-}
-
-export { App }
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    marginHorizontal: 20,
+  },
+  text: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 80,
+    fontWeight: 'semibold',
+    color: 'slategray',
+    padding: 1,
+  },
+  item: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'paleturquoise',
+    padding: 10,
+  },
+  sep: {
+    flex: 1,
+  },
+  sepa: {
+    flex: 2,
+  }, 
+});
