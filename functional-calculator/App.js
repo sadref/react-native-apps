@@ -36,7 +36,7 @@ const App = () => {
         setMathExpression('');
       } else if (buttonValue === '+/-') {
         setAnswerValue((parseFloat(answerValue) * -1).toString());
-        console.log(`answerValue ${answerValue}`);
+        //console.log(`answerValue ${answerValue}`);
       } else if (buttonValue === '%') {
         setAnswerValue((parseFloat(answerValue)* 0.01).toString());
       } else if (buttonValue === '.') {
