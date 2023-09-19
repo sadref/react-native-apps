@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems:'flex-end',
+    //alignItems:'flex-end',
     backgroundColor: 'black',
     padding: 10,
   },
