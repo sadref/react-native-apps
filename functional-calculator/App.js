@@ -38,7 +38,9 @@ const App = () => {
         setAnswerValue((parseFloat(answerValue) * -1).toString());
         //console.log(`answerValue ${answerValue}`);
       } else if (buttonValue === '%') {
-        setAnswerValue((parseFloat(answerValue)* 0.01).toString());
+        // Calculate the percentage
+        const percentage = (parseFloat(answerValue) / 100).toString();
+        setAnswerValue(percentage);
       } else if (buttonValue === '.') {
       if (answerValue.includes('.')) {
         return;
