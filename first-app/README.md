@@ -42,3 +42,4 @@ Before you can run this app, you need to have the following software installed:
 ```bash
  npx expo start
 ```
+5. Use the Expo Go app on your mobile device (iOS or Android) to scan the QR code displayed in the terminal. This will open the app on your device.
