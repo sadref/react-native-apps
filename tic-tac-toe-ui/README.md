@@ -1,4 +1,5 @@
 # React Native UI Design (tic tac toe example)
+[back to root react-native-apps](https://github.com/sadref/react-native-apps/tree/main)
 
 This is a simple React Native app that demonstrates a user interface (UI) design. It displays a 3x3 grid with some cells containing 'O' or 'X' symbols, showcasing a UI design concept.
 
@@ -11,15 +12,6 @@ This is a simple React Native app that demonstrates a user interface (UI) design
 - Demonstrates the use of React Native's `FlatList` and `SafeAreaView` components.
 - Uses various styling techniques to create a visually appealing interface.
 
-## Prerequisites
-
-Before you can run this app, you need to have the following software installed:
-
-- Node.js
-- npm (Node Package Manager)
-- Expo CLI
-- An Android or iOS emulator or a physical device to run the app on
-
 ## Getting Started
 
 [Expo snack link](https://snack.expo.dev/@sadref/github.com-sadref-react-native-apps:tic-tac-toe-ui?platform=web)
@@ -27,6 +19,18 @@ Before you can run this app, you need to have the following software installed:
 ## Screenshots
 
 ![Screenshot 1](screenshots/screenshot1.png)
+
+### Prerequisites
+
+Before you start, ensure you have the following prerequisites installed on your development machine:
+
+- Node.js and npm (Node Package Manager): [Download and Install Node.js](https://nodejs.org/)
+- Expo CLI (for React Native development): Install globally using npm.
+
+  ```bash
+  npm install -g expo-cli
+
+## Installation
 
 1. Clone this repository to your local machine:
 
@@ -36,7 +40,7 @@ Before you can run this app, you need to have the following software installed:
 2. Navigate to the project directory:
 
 ```bash
-  cd react-native-apps/functional-calculator
+  cd react-native-apps/first-app
 ```
 3. Instal project dependencies:
 
