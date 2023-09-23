@@ -9,9 +9,9 @@ This repository contain 3 react native app, each contain own readme.md
 
 ## Try out the apps in expo snack
 
-- [first-app](https://snack.expo.dev/@git/github.com/sadref/react-native-apps:first-app?platform=android)
-- [tic-tac-toe-ui](https://snack.expo.dev/@sadref/github.com-sadref-react-native-apps:tic-tac-toe-ui?platform=android)
-- [functional-calculator](https://snack.expo.dev/@sadref/functional-calculator-final)
+- [first-app](https://snack.expo.dev/@git/github.com/sadref/react-native-apps:first-app?platform=web)
+- [tic-tac-toe-ui](https://snack.expo.dev/@sadref/github.com-sadref-react-native-apps:tic-tac-toe-ui?platform=web)
+- [functional-calculator](https://snack.expo.dev/@sadref/functional-calculator-final?platform=web)
 ## Run Locally
 
 ### Prerequisites
