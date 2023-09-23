@@ -27,8 +27,8 @@ This calculator app is built using React Native and provides a user-friendly int
 
 ## Screenshots
 
-![Screenshot 1](screenshots/screenshot1.png)
-![Screenshot 2](screenshots/screenshot2.png)
+![Screenshot 1](screenshots/screenshot1.PNG)
+![Screenshot 2](screenshots/screenshot2.PNG)
 
 ## Getting Started
 
