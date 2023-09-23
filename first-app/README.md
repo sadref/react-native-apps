@@ -2,15 +2,6 @@
 
 This is a simple React Native app that demonstrates the basic usage of React Native components and Expo APIs. It displays a "Hello, My name is First App 😃💪" message on a red background in landscape mode.
 
-## Prerequisites
-
-Before you can run this app, you need to have the following software installed:
-
-- Node.js
-- npm (Node Package Manager)
-- Expo CLI
-- An Android or iOS emulator or a physical device to run the app on
-
 ## Getting Started
 
 [Expo snack link](https://snack.expo.dev/@sadref/github.com-sadref-react-native-apps:first-app?platform=web)
@@ -18,6 +9,16 @@ Before you can run this app, you need to have the following software installed:
 ## Screenshots
 
 ![Screenshot 1](screenshots/screenshot1.png)
+
+### Prerequisites
+
+Before you start, ensure you have the following prerequisites installed on your development machine:
+
+- Node.js and npm (Node Package Manager): [Download and Install Node.js](https://nodejs.org/)
+- Expo CLI (for React Native development): Install globally using npm.
+
+  ```bash
+  npm install -g expo-cli
 
 ## Installation
 
