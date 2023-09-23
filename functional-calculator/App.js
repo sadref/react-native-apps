@@ -22,45 +22,61 @@ const App = () => {
   const [mathExpression, setMathExpression] = useState('');
   const [activeOperator, setActiveOperator] = useState(''); // Store the active operator
   const [calculationHistory, setCalculationHistory] = useState([]);
+  const [calculationPerformed, setCalculationPerformed] = useState(false);
 
   const longPressedButton = () =>  {setCalculationHistory([])}
   const pressedButton = (buttonValue) => {
+    if (['+', '-', 'x', '/'].includes(buttonValue)) {
+      setCalculationPerformed(false);
+      if (operatorValue !== '') {
+        calculateEquals(); // Calculate previous operation when a new operator is pressed
+      }
+
+      setOperatorValue(buttonValue);
+      setMemoryValue(parseFloat(answerValue));
+      setReadyToPlace(true);
+    }
+    if(mathExpression.slice(-1) !== buttonValue.slice(-1)){
+      setMathExpression(mathExpression + buttonValue);
+    }
     if (isNaN(buttonValue)) {
       setActiveOperator(buttonValue);
-      setOperatorValue(buttonValue);
       if (buttonValue === 'AC') {
         setAnswerValue('0');
         setMemoryValue(0);
         setReadyToPlace(true);
         setOperatorValue('');
         setMathExpression('');
+        setCalculationPerformed(false);
       } else if (buttonValue === '+/-') {
         setAnswerValue((parseFloat(answerValue) * -1).toString());
-        //console.log(`answerValue ${answerValue}`);
       } else if (buttonValue === '%') {
-        // Calculate the percentage
         const percentage = (parseFloat(answerValue) / 100).toString();
         setAnswerValue(percentage);
-      } else if (buttonValue === '.') {
-      if (answerValue.includes('.')) {
-        return;
-      } else {
-        setAnswerValue(answerValue + '.');
-      }
-      } else if (buttonValue === '+' || buttonValue === '-' || buttonValue === 'x' || buttonValue === '/') {
-        if (operatorValue !== '') {
-          calculateEquals();
-        }
-        setMemoryValue(parseFloat(answerValue));
         setReadyToPlace(true);
-        setMathExpression(mathExpression + ' ' + buttonValue);
+      } else if (buttonValue === '.') {
+        if (readyToPlace) {
+          setAnswerValue('0' + buttonValue); // Start with '0.' for the first decimal entry
+          setReadyToPlace(false);
+        } else if (!answerValue.includes('.'))  {
+          setAnswerValue(answerValue + buttonValue);
+          setReadyToPlace(false);
+        }
       } else if (buttonValue === '=') {
-        calculateEquals();
-        setActiveOperator(''); // Reset active operator when a equal is pressed
+        
+        if(calculationPerformed){
+          return;
+        }else {
+          calculateEquals();
+          setMathExpression('');
+          setActiveOperator('');
+          setCalculationPerformed(true);
+        }
       }
     } else {
       handleNumber(buttonValue);
     }
+    
   };
 
 const calculateEquals = () => {
@@ -87,26 +103,21 @@ const calculateEquals = () => {
   }
   const calculationString = `${previous} ${operatorValue} ${current} = ${result}`;
   setCalculationHistory((prevHistory) => [calculationString, ...prevHistory]);
-
   setAnswerValue(result.toString());
   setMemoryValue(result);
   setReadyToPlace(true);
   setMathExpression('');
+  setOperatorValue('')
 };
 
   const handleNumber = (buttonValue) => {
-    if (readyToPlace) {
+    if(readyToPlace) {
+      setAnswerValue(buttonValue);
       setReadyToPlace(false);
-      if (buttonValue !== '0') {
-        setAnswerValue(buttonValue);
-      }
     } else {
-      if (answerValue === '0') {
-        setAnswerValue(buttonValue);
-      } else {
-        setAnswerValue(answerValue + buttonValue);
-      }
+      setAnswerValue(answerValue + buttonValue);
     }
+    //console.log(`${buttonValue}`)
     setMathExpression(mathExpression + buttonValue);
   };
 
