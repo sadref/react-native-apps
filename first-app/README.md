@@ -1,5 +1,5 @@
 # React Native First App
-[back to root react-native-apps](https://github.com/sadref/react-native-apps/tree/main)
+[back to root react-native-apps](https://github.com/sadref/react-native-apps)
 
 This is a simple React Native app that demonstrates the basic usage of React Native components and Expo APIs. It displays a "Hello, My name is First App 😃💪" message on a red background in landscape mode.
 
@@ -45,3 +45,5 @@ Before you start, ensure you have the following prerequisites installed on your 
  npx expo start
 ```
 5. Use the Expo Go app on your mobile device (iOS or Android) to scan the QR code displayed in the terminal. This will open the app on your device.
+
+[back to root react-native-apps](https://github.com/sadref/react-native-apps)
