@@ -40,7 +40,7 @@ Before you start, ensure you have the following prerequisites installed on your 
 2. Navigate to the project directory:
 
 ```bash
-  cd react-native-apps/first-app
+  cd react-native-apps/tic-tac-toe-ui
 ```
 3. Instal project dependencies:
 
