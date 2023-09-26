@@ -1,5 +1,5 @@
 # Functional Calculator App
-[back to root react-native-apps](https://github.com/sadref/react-native-apps/tree/main)
+[back to root react-native-apps](https://github.com/sadref/react-native-apps)
 
 Welcome to the Functional Calculator App repository! This React Native calculator app allows you to perform basic arithmetic calculations on your mobile device.
 
@@ -79,3 +79,5 @@ Before you start, ensure you have the following prerequisites installed on your 
 - Clear the calculation history by long-pressing the "AC" button.
 - View your calculation history at the top of the app.
 - Press the "=" button to see the result of your calculation.
+
+[back to root react-native-apps](https://github.com/sadref/react-native-apps)
