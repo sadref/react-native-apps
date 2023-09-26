@@ -23,7 +23,27 @@ const App = () => {
   const [activeOperator, setActiveOperator] = useState(''); // Store the active operator
   const [calculationHistory, setCalculationHistory] = useState([]);
   const [calculationPerformed, setCalculationPerformed] = useState(false);
-
+  
+  const calcButton = ({ label, onLongPressAction, onPressAction, customStyle, customStyleText }) => {
+    return (
+      <TouchableOpacity
+        style={[
+          {
+            borderWidth: borderWith,
+            width: buttonWidth,
+            height: buttonHeight,
+            borderRadius: buttonWidth / 2,
+          },
+          customStyle,
+        ]}
+        onLongPress={onLongPressAction}
+        onPress={onPressAction}
+      >
+        <Text style={[customStyleText,styles.buttonText]}>{label}</Text>
+      </TouchableOpacity>
+    );
+  };
+  
   const longPressedButton = () =>  {setCalculationHistory([])}
   const pressedButton = (buttonValue) => {
     if (['+', '-', 'x', '/'].includes(buttonValue)) {
@@ -117,10 +137,8 @@ const calculateEquals = () => {
     } else {
       setAnswerValue(answerValue + buttonValue);
     }
-    //console.log(`${buttonValue}`)
     setMathExpression(mathExpression + buttonValue);
   };
-
    return (
 
     <SafeAreaView style={styles.container}>
@@ -141,136 +159,135 @@ const calculateEquals = () => {
       {answerValue}
       </Text>
       <View style={styles.row}>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonFrist]}
-                                  onLongPress={()=> longPressedButton("AC")}
-                                  onPress={()=> pressedButton("AC")}>
-          <Text style={styles.buttonText}>AC</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonFrist,
-                                  activeOperator !== '=' && activeOperator !== '' && activeOperator === "+/-" && styles.activeOperator]} onPress={()=> pressedButton("+/-")}>
-          <Text style={styles.buttonText}>+/-</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonFrist,
-                                  activeOperator !== '=' && activeOperator !== '' && activeOperator === "%" && styles.activeOperator]} onPress={()=> pressedButton("%")}>
-          <Text style={styles.buttonText}>%</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonLastRow,
-                                  activeOperator !== '=' && activeOperator !== '' && activeOperator === "/" && styles.activeOperator]} onPress={()=> pressedButton("/")}>
-          <Text style={styles.buttonText}>/</Text>
-        </TouchableOpacity>
+          {calcButton({
+            label: 'AC',
+            onLongPressAction: () => longPressedButton('AC'),
+            onPressAction: () => pressedButton('AC'),
+            customStyle: styles.buttonFrist,
+          })}
+          {calcButton({
+            label: '+/-',
+            onPressAction: () => pressedButton('+/-'),
+            customStyle: [
+              styles.buttonFrist,
+              activeOperator === "+/-" ? styles.activeOperator : null
+            ],
+          })}
+          {calcButton({
+            label: '%',
+            onPressAction: () => pressedButton('%'),
+            customStyle: [
+              styles.buttonFrist,
+              activeOperator === "%" ? styles.activeOperator : null
+            ],
+          })}
+          {calcButton({
+            label: '/',
+            onPressAction: () => pressedButton('/'),
+            customStyle: [
+              styles.buttonLastRow,
+              activeOperator === "/" ? styles.activeOperator : null
+            ],
+          })}
       </View>
-            <View style={styles.row}>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("7")}>
-          <Text style={styles.buttonText}>7</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("8")}>
-          <Text style={styles.buttonText}>8</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("9")}>
-          <Text style={styles.buttonText}>9</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonLastRow,
-                                  activeOperator !== '=' && activeOperator !== '' && activeOperator === "x" && styles.activeOperator]} onPress={()=> pressedButton("x")}>
-          <Text style={styles.buttonText}>x</Text>
-        </TouchableOpacity>
+      <View style={styles.row}>
+        {calcButton({
+            label: '7',
+            onPressAction: () => pressedButton('7'),
+            customStyle: styles.button,
+          })}
+        {calcButton({
+            label: '8',
+            onPressAction: () => pressedButton('8'),
+            customStyle: styles.button,
+          })}
+        {calcButton({
+            label: '9',
+            onPressAction: () => pressedButton('9'),
+            customStyle: styles.button,
+          })}
+          {calcButton({
+            label: 'x',
+            onPressAction: () => pressedButton('x'),
+            customStyle: [
+              styles.buttonLastRow,
+              activeOperator === "x" ? styles.activeOperator : null
+            ],
+          })}
       </View>
-            <View style={styles.row}>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("4")}>
-          <Text style={styles.buttonText}>4</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("5")}>
-          <Text style={styles.buttonText}>5</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("6")}>
-          <Text style={styles.buttonText}>6</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonLastRow,
-                                  activeOperator !== '=' && activeOperator !== '' && activeOperator === "-" && styles.activeOperator]} onPress={()=> pressedButton("-")}>
-          <Text style={styles.buttonText}>-</Text>
-        </TouchableOpacity>
+      <View style={styles.row}>
+        {calcButton({
+            label: '4',
+            onPressAction: () => pressedButton('4'),
+            customStyle: styles.button,
+          })}
+        {calcButton({
+            label: '5',
+            onPressAction: () => pressedButton('5'),
+            customStyle: styles.button,
+          })}
+        {calcButton({
+            label: '6',
+            onPressAction: () => pressedButton('6'),
+            customStyle: styles.button,
+          })}
+          {calcButton({
+            label: '-',
+            onPressAction: () => pressedButton('-'),
+            customStyle: [
+              styles.buttonLastRow,
+              activeOperator === "-" ? styles.activeOperator : null
+            ],
+          })}
       </View>
-            <View style={styles.row}>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("1")}>
-          <Text style={styles.buttonText}>1</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("2")}>
-          <Text style={styles.buttonText}>2</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton("3")}>
-          <Text style={styles.buttonText}>3</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonLastRow,
-                                  activeOperator !== '=' && activeOperator !== '' && activeOperator === "+" && styles.activeOperator]} onPress={()=> pressedButton("+")}>
-          <Text style={styles.buttonText}>+</Text>
-        </TouchableOpacity>
+      <View style={styles.row}>
+        {calcButton({
+            label: '1',
+            onPressAction: () => pressedButton('1'),
+            customStyle: styles.button,
+          })}
+        {calcButton({
+            label: '2',
+            onPressAction: () => pressedButton('2'),
+            customStyle: styles.button,
+          })}
+        {calcButton({
+            label: '3',
+            onPressAction: () => pressedButton('3'),
+            customStyle: styles.button,
+          })}
+          {calcButton({
+            label: '+',
+            onPressAction: () => pressedButton('+'),
+            customStyle: [
+              styles.buttonLastRow,
+              activeOperator === "+" ? styles.activeOperator : null
+            ],
+          })}
       </View>
-            <View style={styles.row}>
-        <TouchableOpacity style={[{flexGrow: 1, alignItems: 'left', borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonZero]} onPress={()=> pressedButton("0")}>
-          <Text style={[{ marginLeft: 30,},styles.buttonText]}>0</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.button]} onPress={()=> pressedButton(".")}>
-          <Text style={styles.buttonText}>.</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[{borderWidth: borderWith,
-                                  width: buttonWidth,height:buttonHeight,
-                                  borderRadius: buttonWidth/2,},
-                                  styles.buttonLastRow]} onPress={()=> pressedButton("=")}>
-          <Text style={styles.buttonText}>=</Text>
-        </TouchableOpacity>
+      <View style={styles.row}>
+        {calcButton({
+            label: '0',
+            onPressAction: () => pressedButton('0'),
+            customStyle: [
+              styles.buttonZero,
+              {flexGrow: 1, alignItems: 'left',}
+            ],
+            customStyleText: {marginLeft: 30,},
+          })}
+        {calcButton({
+            label: '.',
+            onPressAction: () => pressedButton('.'),
+            customStyle: styles.button,
+          })}
+        {calcButton({
+            label: '=',
+            onPressAction: () => pressedButton('='),
+            customStyle: [
+              styles.buttonLastRow,
+              activeOperator === "=" ? styles.activeOperator : null
+            ],
+          })}
       </View>
       </View>
     </SafeAreaView>
@@ -282,7 +299,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
-    //alignItems:'flex-end',
     backgroundColor: 'black',
     padding: 10,
   },
@@ -330,14 +346,12 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   activeOperator: {
-    //backgroundColor: 'red',
     opacity: 0.3, // Change the background color for active operators
   },
   historyContainer: {
     maxHeight: 150, // Adjust the max height as needed
     marginTop: 10,
     marginRight: 20,
-    //alignItems:'flex-end',
   },
   historyText: {
     color: 'white',
