@@ -22,7 +22,6 @@ This app uses the following React Native components and libraries:
 
 ## Screenshots
 ![Screenshot 1](images/screenshots/screen1.gif)
-![Screenshot 2](images/screenshots/screenshot1.png)
 ![Screenshot 3](images/screenshots/screenshot2.png)
 
 ## Getting Started
